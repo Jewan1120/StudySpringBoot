@@ -2,9 +2,10 @@ package com.jewan.learnspringframework.game;
 
 public class GameRunner {
 
-    private SuperContraGame game;
+    private GamingConsole game; // 느슨한 결합을 위해 인터페이스를 참조
 
-    public GameRunner(SuperContraGame game) {
+    // 이 부분을 느슨한 결합으로 바꾸어 줘야함.
+    public GameRunner(GamingConsole game) {
         this.game = game;
     }
 
@@ -17,6 +18,8 @@ public class GameRunner {
     }
     // Coupling : 얼마나 많은 작업이 관련되어있는가 ?
     // ex) 차 - 엔진 : 강한 결합
-    //     차 - 바퀴 : 느슨한 결합
+    // 차 - 바퀴 : 느슨한 결합
     // 엔진 박살나면 차도 박살이지만, 바퀴가 박살난다고 해서 차가 박살나지 않음. 갈아끼우면 그만.
+    
+    // 느슨한 결합으로 인해 참조하던 클래스에 수정이 이루어져도 해당 소스엔 변화 없음.
 }
