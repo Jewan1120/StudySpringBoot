@@ -3,9 +3,11 @@ package com.jewan.learnspringframework;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-record Person(String name, int age) {};
+record Person(String name, int age, Address address) {
+};
 
-record Address(String firstLine, String city) {};
+record Address(String firstLine, String city) {
+};
 // JDK 16에서 추가된 기능
 // 불변(immutable) 데이터를 나타내는 클래스
 // 자바 Bean을 만드는 번거로움(보일러 플레이트 코드)을 줄여줌
@@ -22,16 +24,30 @@ public class HelloWorldConfiguration {
     }
 
     @Bean
-    public String age() {
-        return "26";
+    public int age() {
+        return 26;
     }
 
+    // 컨테이너에 값을 저장하는 방법
+    // 1. 하드코딩
     @Bean
     public Person person() {
-        return new Person("Taekbae", 10);
+        return new Person("Taekbae", 10, new Address("Anjung", "PyeongTaek"));
     }
-    
+
+    // 2. 메서드 호출
     @Bean
+    public Person person2MethodCall() {
+        return new Person(name(), age(), address());
+    }
+
+    // 3. 파라미터로 전달
+    @Bean
+    public Person person3Parameters(String name, int age, Address address2) { // 파라미터로 전달할 때는 Bean의 이름이 들어가야함.
+        return new Person(name, age, address2); // 기존에 컨테이너에 등록한 name, age
+    }
+
+    @Bean(name = "address2") // name 속성을 부여하여 빈의 이름을 바꾸어줄 수 있음.
     public Address address() {
         return new Address("Nippori", "Tokyo");
     }
