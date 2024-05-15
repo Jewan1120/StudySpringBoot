@@ -17,6 +17,12 @@ public class App02HelloWorldSpring {
         // 3. 스프링에서 관리되는 빈 검색
         // @Bean의 메서드의 이름으로 가져옴
         System.out.println(context.getBean("name")); // Jewan
-    }
 
+        System.out.println(context.getBean("age")); // 26
+
+        // context.getBean("person").toString()
+        System.out.println(context.getBean("person")); // Person[name=Taekbae, age=10]
+        System.out.println(context.getBean("address")); // Address[firstLine=Nippori, city=Tokyo]
+
+    }
 }
