@@ -1,4 +1,4 @@
-package com.jewan.learnspringframework;
+package com.jewan.learnspringframework.helloworld;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;

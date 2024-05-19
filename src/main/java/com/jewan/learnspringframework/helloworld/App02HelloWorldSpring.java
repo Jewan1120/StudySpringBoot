@@ -1,4 +1,4 @@
-package com.jewan.learnspringframework;
+package com.jewan.learnspringframework.helloworld;
 
 import java.util.Arrays;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
