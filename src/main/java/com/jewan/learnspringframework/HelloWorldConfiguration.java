@@ -1,10 +1,13 @@
 package com.jewan.learnspringframework;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 record Person(String name, int age, Address address) {
 };
+
 
 record Address(String firstLine, String city) {
 };
@@ -47,8 +50,27 @@ public class HelloWorldConfiguration {
         return new Person(name, age, address2); // 기존에 컨테이너에 등록한 name, age
     }
 
+    @Bean
+    @Primary // @Primary를 이용하여 같은 동일한 타입의 빈이 여러개일 경우 해당 빈을 우선적으로 사용
+    public Person person4Parameters(String name, int age, Address address) {
+        return new Person(name, age, address);
+    }
+
+    @Bean
+    // @Qualifier("address3qualifier")를 이용하여 특정 Bean으로 한정지음.
+    public Person person5Qualifier(String name, int age, @Qualifier("address3qualifier") Address address) {
+        return new Person(name, age, address);
+    }
+
     @Bean(name = "address2") // name 속성을 부여하여 빈의 이름을 바꾸어줄 수 있음.
+    @Primary
     public Address address() {
+        return new Address("Nippori", "Tokyo");
+    }
+
+    @Bean(name = "address3") // name 속성을 부여하여 빈의 이름을 바꾸어줄 수 있음.
+    @Qualifier("address3qualifier") // Bean을 찾을 때 사용하는 한정자
+    public Address address3() {
         return new Address("Nippori", "Tokyo");
     }
 }
@@ -65,3 +87,9 @@ public class HelloWorldConfiguration {
 // @Component
 // - 클래스 단위
 // - 컴포넌트 스캔으로 인해 자동으로 빈 등록
+
+// @Primary
+// - 스프링 컨테이너가 Bean을 찾을 때, 동일한 타입의 빈이 여러 개일 경우 예외를 반환하지만 Primary 지정을 통해 해당 빈을 우선적으로 사용할 수 있게 해줌
+
+// @Qualifier("str")
+// - 스프링 컨테이너가 Bean을 찾을 때, 특정 문자열로 한정지어 찾을 수 있음

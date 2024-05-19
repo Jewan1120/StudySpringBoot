@@ -1,5 +1,6 @@
 package com.jewan.learnspringframework;
 
+import java.util.Arrays;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class App02HelloWorldSpring {
@@ -24,7 +25,6 @@ public class App02HelloWorldSpring {
         System.out.println(context.getBean("person")); // Person[name=Taekbae, age=10]
         System.out.println(context.getBean("person2MethodCall")); // Person[name=Jewan, age=26]
         System.out.println(context.getBean("person3Parameters"));
-
         // Person[name=Taekbae, age=10, address=Address[firstLine=Anjung, city=PyeongTaek]]
         // Person[name=Jewan, age=26, address=Address[firstLine=Nippori, city=Tokyo]]
         // Person[name=Jewan, age=26, address=Address[firstLine=Nippori, city=Tokyo]]
@@ -34,7 +34,17 @@ public class App02HelloWorldSpring {
         System.out.println(context.getBean("address2"));
 
         // 클래스 자체를 가져와버려도 됨 -> record도 클래스 ? true
-        System.out.println(context.getBean(Address.class));
+        // System.out.println(context.getBean(Address.class));
 
+        // 스트림으로 출력
+        Arrays.stream(context.getBeanDefinitionNames()).forEach(System.out::println);
+
+        // 동일한 객체가 있어서 예외를 발생함.
+        // expected single matching bean but found 3
+        // 어떤 객체를 반환해야하는지 명시가 필요 -> 하나를 기본으로 만들어줘야함
+        System.out.println(context.getBean(Person.class));
+        System.out.println(context.getBean("person5Qualifier"));
+        // Person[name=Jewan, age=26, address=Address[firstLine=Nippori, city=Tokyo]]
+        // Person[name=Jewan, age=26, address=Address[firstLine=Nippori, city=Tokyo]]
     }
 }
