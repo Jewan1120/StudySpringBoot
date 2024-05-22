@@ -1,5 +1,10 @@
 package com.jewan.learnspringframework.game;
 
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
+
+@Component
+@Primary // @Primary를 이용해 Bean에 우선권 부여
 public class SuperContraGame implements GamingConsole {
 
     public void up() {

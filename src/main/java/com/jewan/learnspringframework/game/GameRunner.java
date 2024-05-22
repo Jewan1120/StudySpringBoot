@@ -1,5 +1,6 @@
 package com.jewan.learnspringframework.game;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -8,7 +9,7 @@ public class GameRunner {
     private GamingConsole game; // 느슨한 결합을 위해 인터페이스를 참조
 
     // 이 부분을 느슨한 결합으로 바꾸어 줘야함.
-    public GameRunner(GamingConsole game) {
+    public GameRunner(@Qualifier("MarioGameQualifier") GamingConsole game) {
         this.game = game;
     }
 
