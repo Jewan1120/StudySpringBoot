@@ -1,11 +1,10 @@
-package com.jewan.learnspringframework;
+package com.jewan.learnspringframework.game;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import com.jewan.learnspringframework.game.GameRunner;
-import com.jewan.learnspringframework.game.GamingConsole;
+import com.jewan.learnspringframework.GamingConfiguration;
 
 @Configuration
 @ComponentScan("com.jewan.learnspringframework.game")
