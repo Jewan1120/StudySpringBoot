@@ -8,7 +8,7 @@ import com.jewan.learnspringframework.GamingConfiguration;
 
 @Configuration
 @ComponentScan("com.jewan.learnspringframework.game")
-public class GamingAppLaucherApplication {
+public class GamingAppLaucherApplication2 {
 
     public static void main(String[] args) {
 
