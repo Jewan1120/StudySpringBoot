@@ -1,9 +1,10 @@
 package com.jewan.learnspringframework.examples.c1;
 
 import java.util.Arrays;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+// @Component
+@Service
 public class BusinessCalculationService {
 
     private DataService dataService; // 이걸 사용하려면 의존성을 주입해줘야함.
