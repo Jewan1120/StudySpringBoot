@@ -19,7 +19,8 @@ public class CourseController {
 
     @RequestMapping("/courses")
     public List<Course> retrieveAllCourses() {
-        return Arrays.asList(new Course(1, "Learn AWS", "Jewan"), new Course(2, "Learn DevOps", "Jewan"));
+        return Arrays.asList(new Course(1, "Learn AWS", "Jewan"), new Course(2, "Learn DevOps", "Jewan"),
+                new Course(3, "Learn AWS", "Jewan"));
         // [{"id":1,"name":"Learn AWS","author":"Jewan"},{"id":2,"name":"Learn
         // DevOps","author":"Jewan"},{"id":3,"name":"Learn AWS","author":"Jewan"}]
     }
