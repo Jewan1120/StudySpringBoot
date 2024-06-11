@@ -3,6 +3,7 @@ package com.jewan.learnspringframework.course.jdbc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import com.jewan.learnspringframework.course.Course;
 
 @Component
 public class CourseJdbcCommandLineRunner implements CommandLineRunner {
@@ -15,6 +16,9 @@ public class CourseJdbcCommandLineRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         repository.insert();
+        repository.insert(new Course(2, "Learn Cat", "Taekbae"));
+        repository.insert(new Course(3, "Learn Jewna", "Shopho"));
+        repository.deleteById(1);
     }
 
 }
