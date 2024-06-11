@@ -1,4 +1,4 @@
-package com.jewan.learnspringframework;
+package com.jewan.learnspringframework.course;
 
 import java.util.Arrays;
 import java.util.List;
