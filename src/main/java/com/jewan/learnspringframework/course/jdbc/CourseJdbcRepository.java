@@ -1,6 +1,7 @@
 package com.jewan.learnspringframework.course.jdbc;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import com.jewan.learnspringframework.course.Course;
@@ -23,10 +24,16 @@ public class CourseJdbcRepository {
                 insert into course (id, name, author)
                 values(?, ?, ?);
             """;
-    
-    private static String DELET_QUERY =
+
+    private static String DELET_QUERY = 
             """
                 delete from course
+                where id = ?
+            """;
+
+    private static String SELECT_QUERY =
+            """
+                select * from course
                 where id = ?
             """;
 
@@ -41,5 +48,11 @@ public class CourseJdbcRepository {
 
     public void deleteById(long id) {
         springJdbcTemplate.update(DELET_QUERY, id);
+    }
+
+    public Course findById(long id) {
+        // Execute a query for a result object
+        // 자동으로 매핑해줌
+        return springJdbcTemplate.queryForObject(SELECT_QUERY, new BeanPropertyRowMapper<>(Course.class), id);
     }
 }
