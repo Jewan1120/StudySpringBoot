@@ -43,6 +43,18 @@ public class CourseCommandLineRunner implements CommandLineRunner {
         // Course [id=2, name=Learn Cat, author=Taekbae]
         // Course [id=3, name=Learn Jewna, author=Shopho]
 
+        System.out.println(repository.findAll());
+        // [Course [id=2, name=Learn Cat, author=Taekbae], Course [id=3, name=Learn Jewan, author=Shopho]]
+
+        System.out.print(repository.findByAuthor("Taekbae"));
+        // Hibernate: select c1_0.id,c1_0.author,c1_0.name from course c1_0 where c1_0.author=?
+        // [Course [id=2, name=Learn Cat, author=Taekbae]]
+
+        System.out.print(repository.findByAuthor(""));
+        // []
+
+        System.out.println(repository.findByName("Learn Jewan"));
+        // [Course [id=3, name=Learn Jewan, author=Shopho]]
     }
 
 }
