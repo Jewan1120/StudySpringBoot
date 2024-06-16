@@ -3,10 +3,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Login Page</title>
 </head>
 <body>
-  ${name}의 로그인페이지
+  Welcome to the login page
   <!-- jewan의 로그인페이지 -->
+  <form method="post">
+    Name : <input type="text" name="name"/>
+    Password : <input type="password" name="password">
+    <input type="submit"/>
+  </form> 
 </body>
 </html>

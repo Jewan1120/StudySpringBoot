@@ -12,7 +12,7 @@ public class LoginLogerController {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
-    @RequestMapping("login") // /login?name=Jewan
+    @RequestMapping("loginlog") // /login?name=Jewan
     public String gotoLoginPage(@RequestParam("name") String name, ModelMap model) { // String으로 파라미터 전달 받음
         // @RequestParam("파라미터 명")의 파라미터명을 적어줘야함
         model.put("name", name); // 모델에서 값이 뷰로 자동으로 전달 jsp에서 ${}로 값 꺼내 씀
