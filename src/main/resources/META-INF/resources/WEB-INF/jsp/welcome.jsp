@@ -8,6 +8,5 @@
 <body>
   <div>Welcome to Jewan</div>
   <div>name : ${name}</div>
-  <div>password : ${password}</div>
 </body>
 </html>

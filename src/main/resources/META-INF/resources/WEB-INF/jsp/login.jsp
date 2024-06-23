@@ -8,6 +8,7 @@
 <body>
   Welcome to the login page
   <!-- jewan의 로그인페이지 -->
+  <pre>${errorMessage}</pre>
   <form method="post">
     Name : <input type="text" name="name"/>
     Password : <input type="password" name="password">
