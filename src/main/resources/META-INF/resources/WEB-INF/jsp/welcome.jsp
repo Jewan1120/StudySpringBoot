@@ -8,5 +8,6 @@
 <body>
   <div>Welcome to Jewan</div>
   <div>name : ${name}</div>
+  <div><a href="list-todos">Manage </a>todos</div>
 </body>
 </html>
