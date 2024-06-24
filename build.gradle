@@ -22,6 +22,9 @@ dependencies {
   implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
   implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
   implementation 'org.apache.tomcat.embed:tomcat-embed-jasper' // JSP
+  implementation 'jakarta.servlet:jakarta.servlet-api'
+  implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api'
+  implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl'
   implementation 'jakarta.inject:jakarta.inject-api:2.0.1'
   testImplementation 'org.springframework.boot:spring-boot-starter-test'
   developmentOnly 'org.springframework.boot:spring-boot-devtools'
