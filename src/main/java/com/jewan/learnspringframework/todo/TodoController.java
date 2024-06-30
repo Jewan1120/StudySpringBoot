@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import jakarta.validation.Valid;
@@ -24,7 +24,7 @@ public class TodoController {
     }
 
     // /list-todos
-    @RequestMapping("list-todos")
+    @GetMapping("list-todos")
     public String listAllTodos(ModelMap model) {
         List<Todo> todos = todoService.findByUsername("jewan");
         model.addAttribute("todos", todos);
@@ -32,16 +32,16 @@ public class TodoController {
     }
 
     // GET, POST 구분
-    @RequestMapping(value = "add-todo", method = RequestMethod.GET)
+    @GetMapping("add-todo")
     public String showNewTodoPage(ModelMap model) {
         String username = (String) model.get("name");
         // 양방향 바인딩 -> 서비스에서 뷰로 기본 값을 전달
         Todo todo = new Todo(0, username, "", LocalDate.now().plusYears(1), false); // 임의 데이터
-        model.put("todo", todo); // model에 todo를 전달해줌 -> JSP의 form에서 사용하기 위함
+        model.addAttribute("todo", todo); // model에 todo를 전달해줌 -> JSP의 form에서 사용하기 위함
         return "todo";
     }
 
-    @RequestMapping(value = "add-todo", method = RequestMethod.POST)
+    @PostMapping("add-todo")
     // 파라미터를 직접 바인딩 하는 것이 아니라 Object를 전달 받음
     // BindingResult를 사용할 때는 @ModelAttribute나 @RequestBody로 바인딩된 객체 바로 뒤에 위치
     public String addNewTodo(ModelMap model, @Valid @ModelAttribute("todo") Todo todo, BindingResult result) {
@@ -54,7 +54,7 @@ public class TodoController {
     }
 
     // Delete todo
-    @RequestMapping("delete-todo")
+    @GetMapping("delete-todo")
     public String deleteTodo(@RequestParam(name = "id") int id) {
         todoService.deleteById(id);
         return "redirect:list-todos"; // URL 재 요청
