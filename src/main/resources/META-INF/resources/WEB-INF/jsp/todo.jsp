@@ -16,7 +16,8 @@
       <!-- required="required"으로 유효성 체크 가능 -->
       <!-- 유효성 검사는 Server Side에서 구현 -->
       <!-- name 속성 대신 path를 사용해서 빈에 매핑 -->
-      Description : <form:input type="text" path="description"/>
+      Description : <form:input type="text" path="description" />
+      <form:errors path="description" cssClass="text-warning"/>
       <form:input type="hidden" path="id" />
       <form:input type="hidden" path="done" />
       <input type="submit" class="btn btn-success">
