@@ -10,6 +10,13 @@ public class Todo {
     private LocalDate targetDate;
     private boolean done;
 
+    // 명시적으로 기본 생성자가 정의되지 않으면 자동으로 생성되지만
+    // 다른 생성자가 정의된 경우에는 기본 생성자가 자동으로 생성되지 않으므로
+    // 스프링 MVC는 폼 데이터를 바인딩할 때 기본 생성자가 필요
+    public Todo() {
+
+    }
+
     public Todo(int id, String username, String description, LocalDate targetDate, boolean done) {
         super();
         this.id = id;
