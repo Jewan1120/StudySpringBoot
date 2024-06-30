@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import jakarta.validation.Valid;
 
@@ -49,6 +50,13 @@ public class TodoController {
         }
         String username = (String) model.get("name"); // 뷰 model 안에 담겨 있던 값
         todoService.addTodo(username, todo.getDescription(), LocalDate.now().plusYears(1), false);
+        return "redirect:list-todos"; // URL 재 요청
+    }
+
+    // Delete todo
+    @RequestMapping("delete-todo")
+    public String deleteTodo(@RequestParam(name = "id") int id) {
+        todoService.deleteById(id);
         return "redirect:list-todos"; // URL 재 요청
     }
 }
