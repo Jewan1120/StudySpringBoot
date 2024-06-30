@@ -49,7 +49,7 @@ public class TodoController {
             return "todo";
         }
         String username = (String) model.get("name"); // 뷰 model 안에 담겨 있던 값
-        todoService.addTodo(username, todo.getDescription(), LocalDate.now().plusYears(1), false);
+        todoService.addTodo(username, todo.getDescription(), todo.getTargetDate(), false);
         return "redirect:list-todos"; // URL 재 요청
     }
 
@@ -59,4 +59,25 @@ public class TodoController {
         todoService.deleteById(id);
         return "redirect:list-todos"; // URL 재 요청
     }
+
+    // Update todo
+    @GetMapping("update-todo")
+    // 메서드 이름을 분명하게 작성
+    public String showUpdateTodoPage(@RequestParam(name = "id") int id, ModelMap model) {
+        Todo todo = todoService.findById(id);
+        model.addAttribute("todo", todo);
+        return "todo";
+    }
+
+    @PostMapping("update-todo")
+    public String updateTodo(ModelMap model, @Valid @ModelAttribute("todo") Todo todo, BindingResult result) {
+        if (result.hasErrors()) {
+            return "todo";
+        }
+        String username = (String) model.get("name"); // 뷰 model 안에 담겨 있던 값
+        todo.setUsername(username);
+        todoService.updateTodo(todo);
+        return "redirect:list-todos"; // URL 재 요청
+    }
+
 }
