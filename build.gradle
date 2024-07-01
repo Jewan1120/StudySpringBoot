@@ -22,6 +22,7 @@ dependencies {
   implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
   implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
   implementation 'org.springframework.boot:spring-boot-starter-validation' // 유효성 검사
+  implementation 'org.springframework.boot:spring-boot-starter-security' // 인증과 권한 부여
   implementation 'org.apache.tomcat.embed:tomcat-embed-jasper' // JSP
   implementation 'jakarta.servlet:jakarta.servlet-api'
   implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api'
