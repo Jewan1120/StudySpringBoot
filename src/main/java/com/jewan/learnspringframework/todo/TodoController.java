@@ -2,6 +2,8 @@ package com.jewan.learnspringframework.todo;
 
 import java.time.LocalDate;
 import java.util.List;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -26,7 +28,8 @@ public class TodoController {
     // /list-todos
     @GetMapping("list-todos")
     public String listAllTodos(ModelMap model) {
-        List<Todo> todos = todoService.findByUsername("jewan");
+        String username = getLoggedInUsername();
+        List<Todo> todos = todoService.findByUsername(username);
         model.addAttribute("todos", todos);
         return "listTodos";
     }
@@ -34,7 +37,7 @@ public class TodoController {
     // GET, POST 구분
     @GetMapping("add-todo")
     public String showNewTodoPage(ModelMap model) {
-        String username = (String) model.get("name");
+        String username = getLoggedInUsername();
         // 양방향 바인딩 -> 서비스에서 뷰로 기본 값을 전달
         Todo todo = new Todo(0, username, "", LocalDate.now().plusYears(1), false); // 임의 데이터
         model.addAttribute("todo", todo); // model에 todo를 전달해줌 -> JSP의 form에서 사용하기 위함
@@ -48,7 +51,7 @@ public class TodoController {
         if (result.hasErrors()) {
             return "todo";
         }
-        String username = (String) model.get("name"); // 뷰 model 안에 담겨 있던 값
+        String username = getLoggedInUsername(); // 뷰 model 안에 담겨 있던 값
         todoService.addTodo(username, todo.getDescription(), todo.getTargetDate(), false);
         return "redirect:list-todos"; // URL 재 요청
     }
@@ -74,10 +77,16 @@ public class TodoController {
         if (result.hasErrors()) {
             return "todo";
         }
-        String username = (String) model.get("name"); // 뷰 model 안에 담겨 있던 값
+        String username = getLoggedInUsername(); // 뷰 model 안에 담겨 있던 값
         todo.setUsername(username);
         todoService.updateTodo(todo);
         return "redirect:list-todos"; // URL 재 요청
+    }
+
+    private String getLoggedInUsername() {
+        // SpringSecurity에서 닉네임을 직접 가져옴
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return authentication.getName();
     }
 
 }

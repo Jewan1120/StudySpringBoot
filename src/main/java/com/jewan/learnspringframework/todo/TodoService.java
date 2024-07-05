@@ -20,14 +20,15 @@ public class TodoService {
         todos.add(new Todo(++todosCount, "jewan", "gogo", LocalDate.now().plusYears(3), false));
     }
 
-    public List<Todo> findByUsername(String name) {
-        return todos;
+    public List<Todo> findByUsername(String username) {
+        Predicate<? super Todo> predicate = todo -> todo.getUsername().equals(username);
+        return todos.stream().filter(predicate).toList ();
     }
 
     public void addTodo(String username, String description, LocalDate targetDate, boolean done) {
         todos.add(new Todo(++todosCount, username, description, targetDate, done));
     }
-    
+
     public void deleteById(int id) {
         Predicate<? super Todo> predicate = todo -> todo.getId() == id;
         todos.removeIf(predicate);
