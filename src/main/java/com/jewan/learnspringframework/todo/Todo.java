@@ -1,16 +1,26 @@
 package com.jewan.learnspringframework.todo;
 
 import java.time.LocalDate;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Size;
 
+// JPA -> 테이블에 자동으로 맵핑
+// JPA(Java Persistence API)를 사용하여 데이터베이스 테이블에 매핑되는 엔티티 클래스
+// 스프링이 사전 설정 과정에서 해당 어노테이션이 있으면 자동으로 해당 엔티티로 테이블을 작성함
+// Entity(name = "test")로 테이블 명을 지정해줄 수 있음.
+@Entity
 public class Todo {
 
+    @Id // 엔티티의 기본 키(primary key)
+    @GeneratedValue // @GeneratedValue(strategy = GenerationType.IDENTITY): 기본 키 값이 데이터베이스에서 자동으로 생성
     private int id;
     private String username;
     
     @Size(min = 10, message = "Enter atleast 10 characters")
     private String description;
-    private LocalDate targetDate;
+    private LocalDate targetDate; // -> 문자열에 대문자가 있다면 DB에서는 _로 표현
     private boolean done;
 
     // 명시적으로 기본 생성자가 정의되지 않으면 자동으로 생성되지만

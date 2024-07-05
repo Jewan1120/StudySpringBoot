@@ -1,3 +1,5 @@
+DROP TABLE course IF EXISTS;
+
 create table course
 (
   id bigint not null,
