@@ -18,16 +18,13 @@ import jakarta.validation.Valid;
 @SessionAttributes("name")
 public class TodoControllerJpa {
 
-    private TodoService todoService;
-    
     private TodoRepository todoRepository;
 
-    public TodoControllerJpa(TodoService todoService, TodoRepository todoRepository) {
+    public TodoControllerJpa(TodoRepository todoRepository) {
         super();
-        this.todoService = todoService;
         this.todoRepository = todoRepository;
     }
-    
+
     // /list-todos
     @GetMapping("list-todos")
     public String listAllTodos(ModelMap model) {
@@ -55,14 +52,17 @@ public class TodoControllerJpa {
             return "todo";
         }
         String username = getLoggedInUsername(); // 뷰 model 안에 담겨 있던 값
-        todoService.addTodo(username, todo.getDescription(), todo.getTargetDate(), false);
+        todo.setUsername(username);
+
+        todoRepository.save(todo); // JPA를 이용해서 Bean에 등록되어있는 값을 자동으로 매핑 후 H2 DB에 Insert
+
         return "redirect:list-todos"; // URL 재 요청
     }
 
     // Delete todo
     @GetMapping("delete-todo")
     public String deleteTodo(@RequestParam(name = "id") int id) {
-        todoService.deleteById(id);
+        todoRepository.deleteById(id);
         return "redirect:list-todos"; // URL 재 요청
     }
 
@@ -70,7 +70,7 @@ public class TodoControllerJpa {
     @GetMapping("update-todo")
     // 메서드 이름을 분명하게 작성
     public String showUpdateTodoPage(@RequestParam(name = "id") int id, ModelMap model) {
-        Todo todo = todoService.findById(id);
+        Todo todo = todoRepository.findById(id).get(); // Optional을 반환하기 때문에 get을 해줘야함
         model.addAttribute("todo", todo);
         return "todo";
     }
@@ -82,7 +82,7 @@ public class TodoControllerJpa {
         }
         String username = getLoggedInUsername(); // 뷰 model 안에 담겨 있던 값
         todo.setUsername(username);
-        todoService.updateTodo(todo);
+        todoRepository.save(todo);
         return "redirect:list-todos"; // URL 재 요청
     }
 
