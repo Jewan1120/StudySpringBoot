@@ -33,6 +33,7 @@ dependencies {
   implementation 'org.webjars:bootstrap-datepicker:1.9.0'
   testImplementation 'org.springframework.boot:spring-boot-starter-test'
   developmentOnly 'org.springframework.boot:spring-boot-devtools'
+  runtimeOnly 'com.mysql:mysql-connector-j'
   runtimeOnly 'com.h2database:h2'
 }
 
