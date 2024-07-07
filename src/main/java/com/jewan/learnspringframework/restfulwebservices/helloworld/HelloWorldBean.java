@@ -1,4 +1,4 @@
-package com.jewan.restfulwebservices.helloworld;
+package com.jewan.learnspringframework.restfulwebservices.helloworld;
 
 public class HelloWorldBean {
 
