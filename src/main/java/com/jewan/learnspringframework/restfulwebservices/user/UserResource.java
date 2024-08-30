@@ -28,7 +28,11 @@ public class UserResource {
     // GET /users
     @GetMapping("users/{id}")
     public User retrieveUser(@PathVariable("id") int id) {
-        return service.findOne(id);
+        User user = service.findOne(id);
+        if(user == null)
+            throw new UserNotFoundException("id : " + id);
+        
+        return user;
     }
 
     // talend api tester 확장 프로그램을 이용해서 Post 요청 전달

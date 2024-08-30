@@ -32,7 +32,7 @@ dependencies {
   implementation 'org.webjars:jquery:3.6.0'
   implementation 'org.webjars:bootstrap-datepicker:1.9.0'
   testImplementation 'org.springframework.boot:spring-boot-starter-test'
-  developmentOnly 'org.springframework.boot:spring-boot-devtools'
+  developmentOnly 'org.springframework.boot:spring-boot-devtools'  // jar로 빌드된 파일로 실행했을 때는 관련 로그가 나오지 않음
   runtimeOnly 'com.mysql:mysql-connector-j'
   runtimeOnly 'com.h2database:h2'
 }
