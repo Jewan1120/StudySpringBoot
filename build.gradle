@@ -32,6 +32,7 @@ dependencies {
   implementation 'org.webjars:jquery:3.6.0'
   implementation 'org.webjars:bootstrap-datepicker:1.9.0'
   implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0' // OpenAPI 3으로 Restful API 문서 생성
+  implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml' // JSON파일을 XML파일로 변경
   testImplementation 'org.springframework.boot:spring-boot-starter-test'
   developmentOnly 'org.springframework.boot:spring-boot-devtools' // jar로 빌드된 파일로 실행했을 때는 관련 로그가 나오지 않음
   runtimeOnly 'com.mysql:mysql-connector-j'
