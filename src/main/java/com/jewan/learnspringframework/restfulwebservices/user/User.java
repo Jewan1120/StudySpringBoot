@@ -30,7 +30,7 @@ public class User {
     @OneToMany(mappedBy = "user") // 일대다 관계
     @JsonIgnore
     private List<Post> posts;
-    
+
     public User() {
 
     }
@@ -64,6 +64,14 @@ public class User {
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 
     @Override
