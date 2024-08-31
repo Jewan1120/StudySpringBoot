@@ -1,12 +1,15 @@
 package com.jewan.learnspringframework.restfulwebservices.user;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 
@@ -24,6 +27,10 @@ public class User {
     @JsonProperty("birth_date") // 표기 형식을 birth_date로 변경
     private LocalDate birthDate;
 
+    @OneToMany(mappedBy = "user") // 일대다 관계
+    @JsonIgnore
+    private List<Post> posts;
+    
     public User() {
 
     }
