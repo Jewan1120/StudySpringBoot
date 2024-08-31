@@ -2,6 +2,9 @@ package com.jewan.learnspringframework.restfulwebservices.user;
 
 import java.net.URI;
 import java.util.List;
+
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +16,8 @@ import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @RestController
 public class UserResource {
@@ -31,12 +36,17 @@ public class UserResource {
 
     // GET /users
     @GetMapping("users/{id}")
-    public User retrieveUser(@PathVariable("id") int id) {
+    public EntityModel<User> retrieveUser(@PathVariable("id") int id) {
         User user = service.findOne(id);
         if(user == null)
             throw new UserNotFoundException("id : " + id);
         
-        return user;
+        EntityModel<User> entityModel = EntityModel.of(user);
+        
+        WebMvcLinkBuilder link = linkTo(methodOn(this.getClass()).retrieveAllUsers());
+        entityModel.add(link.withRel("all-users"));
+        
+        return entityModel;
     }
 
     // talend api tester 확장 프로그램을 이용해서 Post 요청 전달
@@ -46,9 +56,7 @@ public class UserResource {
         User savedUser = service.save(user);
         // locateion -> users/{id}
         // created()의 인자로 URI을 받음
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(savedUser.getId())
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedUser.getId())
                 .toUri();
         return ResponseEntity.created(location).build(); // 201 상태를 반환
     }
@@ -58,5 +66,5 @@ public class UserResource {
     public void deleteUser(@PathVariable("id") int id) {
         service.deleteById(id);
     }
-    
+
 }
