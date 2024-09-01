@@ -6,21 +6,22 @@ import org.junit.jupiter.api.Test; // JUnit5 = Jupiter
 
 class MyMathTest {
 
+    private MyMath math = new MyMath();
+
     @Test
-    void test() {
+    void calculateSum_ThreeMemeberArray() {
         // 실패가 없으면 통과한다
         // 테스트 조건 = Assert
         // Assert 중 하나라도 실패하면 실패
 
         // fail("Not yet implemented");
 
-        int[] numbers = { 1, 2, 3 };
-        MyMath math = new MyMath();
-        int result = math.calculateSum(numbers);
-        System.out.println(result); // 해당 출력이 예상값과 일치하는지 작성
+        assertEquals(6, math.calculateSum(new int[] { 1, 2, 3 })); // 예상값, 실제값
+    }
 
-        int expectedResult = 5; // 예상값
-        assertEquals(expectedResult, result); // 예상값, 실제값
+    @Test
+    void calculateSum_ZeroLengthArray() {
+        assertEquals(0, math.calculateSum(new int[] {}));
     }
 
 }
