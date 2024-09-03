@@ -16,9 +16,10 @@ repositories {
 	mavenCentral()
 }
 
-dependencies {
+dependencies { 
   implementation 'org.springframework.boot:spring-boot-starter'
   implementation 'org.springframework.boot:spring-boot-starter-web'
+  implementation 'org.springframework.boot:spring-boot-starter-aop' // AOP 관점 지향 프로그래밍
   implementation 'org.springframework.boot:spring-boot-starter-actuator' // 애플리케이션 상태 확인 = http://localhost:8080/actuator
   implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
   implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
