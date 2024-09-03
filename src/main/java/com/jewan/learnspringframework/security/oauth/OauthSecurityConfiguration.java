@@ -8,7 +8,7 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
-@Configuration
+// @Configuration
 public class OauthSecurityConfiguration {
 
     @Bean
@@ -17,7 +17,7 @@ public class OauthSecurityConfiguration {
         http.authorizeHttpRequests().anyRequest().authenticated();
         // http.formLogin();
         // http.httpBasic();
-        http.oauth2Login(Customizer.withDefaults());
+        // http.oauth2Login(Customizer.withDefaults());
         return http.build();
     }
 }
