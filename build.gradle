@@ -25,7 +25,8 @@ dependencies {
   implementation 'org.springframework.boot:spring-boot-starter-validation' // 유효성 검사
   implementation 'org.springframework.boot:spring-boot-starter-security' // 인증과 권한 부여
   implementation 'org.springframework.boot:spring-boot-starter-hateoas' // HATEOAS : REST API 응답에 링크를 포함
-  implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server' // JWT 및 Oauth2
+  implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server' // JWT 및 OAuth2
+  implementation 'org.springframework.boot:spring-boot-starter-oauth2-client' // OAuth2 클라이언트 기능을 쉽게 사용할 수 있도록 제공
   implementation 'org.apache.tomcat.embed:tomcat-embed-jasper' // JSP
   implementation 'jakarta.servlet:jakarta.servlet-api'
   implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api'
